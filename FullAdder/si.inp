@@ -1,0 +1,131 @@
+// Default Spectre Simulation run title card.
+
+
+// Generated for: spectre
+// Generated on: Nov 28 12:50:29 2023
+// Design library name: Project2
+// Design cell name: FullAdder
+// Design view name: schematic
+simulator lang=spectre
+global 0 vdd! gnd!
+
+include "/usr/local/cadence/IC618/tools.lnx86/dfII/local/ncsu-cdk-1.6.0.beta/models/spectre/standalone/ami06N.m"
+
+include "/usr/local/cadence/IC618/tools.lnx86/dfII/local/ncsu-cdk-1.6.0.beta/models/spectre/standalone/ami06P.m"
+
+
+
+
+
+// Library name: Project1
+// Cell name: NAND
+// View name: schematic
+subckt NAND A_in B_in Y_out
+    P1 (Y_out B_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P0 (Y_out A_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    N1 (net1 B_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N0 (Y_out A_in net1 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+ends NAND
+// End of subcircuit definition.
+
+// Library name: Project1
+// Cell name: inverter
+// View name: schematic
+subckt inverter inv_in inv_out
+    P0 (inv_out inv_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 \
+        ad=2.25e-12 ps=6u pd=6u m=1 region=sat
+    N0 (inv_out inv_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+ends inverter
+// End of subcircuit definition.
+
+// Library name: Project1
+// Cell name: XOR
+// View name: schematic
+subckt XOR A0 A1 X
+    P3 (net4 A1B X vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P2 (vdd! A0 net4 vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P1 (net2 A0B vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P0 (X A1 net2 vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N3 (0 A1B net8 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N2 (net8 A0B X 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N1 (X A0 net6 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N0 (net6 A1 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    I5 (A1 A1B) inverter
+    I4 (A0 A0B) inverter
+ends XOR
+// End of subcircuit definition.
+
+// Library name: Project2
+// Cell name: HalfAdder
+// View name: schematic
+subckt HalfAdder A B C S
+    I0 (A B net3) NAND
+    I1 (net3 C) inverter
+    I2 (A B S) XOR
+ends HalfAdder
+// End of subcircuit definition.
+
+// Library name: Project1
+// Cell name: NOR
+// View name: schematic
+subckt NOR A_in B_in Y_out
+    N1 (Y_out A_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N0 (Y_out B_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    P1 (Y_out B_in net1 vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P0 (net1 A_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+ends NOR
+// End of subcircuit definition.
+
+// Library name: Project2
+// Cell name: FullAdder
+// View name: schematic
+I1 (Cin net1 net3 S) HalfAdder
+I0 (A B net2 net1) HalfAdder
+I2 (net3 net2 net4) NOR
+I4 (net4 Cout) inverter
+
+// Spectre Source Statements
+vdd (vdd! 0) vsource dc=5
+gnd (gnd! 0) vsource dc=0
+vinAi (A 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 0 21.0n 0 21.05n 0 28.00n 0 28.05n 5 35.00n 5 35.05n 5 42.0n 5 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinBi (B 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 5 21.0n 5 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 0 42.0n 0 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinCin (Cin 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 5 14n 5 14.05n 0 21.0n 0 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 5 42.0n 5 42.05n 0 49.00n 0 49.05n 5 56.0n 5]
+
+
+// Spectre Analyses and Output Options Statements
+
+// Output Options
+simOptions options
+//+      reltol = 1.00000000E-03
+//+      vabstol = 1.00000000E-06
+//+      iabstol = 1.00000000E-12
+//+      temp = 27
+//+      save = allpub
+//+      currents = selected
+
+// Analyses
+// dc1 dc oppoint=logfile homotopy=all
+// tran1 tran stop=1 errpreset=moderate
+tran1 tran start=0 stop=56n step=0.1n errpreset=moderate
+
+
+// End of Netlist

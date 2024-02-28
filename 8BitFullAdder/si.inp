@@ -1,0 +1,170 @@
+// Default Spectre Simulation run title card.
+
+
+// Generated for: spectre
+// Generated on: Nov 30 12:58:23 2023
+// Design library name: Project2
+// Design cell name: 8BitFullAdder
+// Design view name: schematic
+simulator lang=spectre
+global 0 vdd! gnd!
+
+include "/usr/local/cadence/IC618/tools.lnx86/dfII/local/ncsu-cdk-1.6.0.beta/models/spectre/standalone/ami06N.m"
+
+include "/usr/local/cadence/IC618/tools.lnx86/dfII/local/ncsu-cdk-1.6.0.beta/models/spectre/standalone/ami06P.m"
+
+// Library name: Project1
+// Cell name: NAND
+// View name: schematic
+subckt NAND A_in B_in Y_out
+    P1 (Y_out B_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P0 (Y_out A_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    N1 (net1 B_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N0 (Y_out A_in net1 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+ends NAND
+// End of subcircuit definition.
+
+// Library name: Project1
+// Cell name: inverter
+// View name: schematic
+subckt inverter inv_in inv_out
+    P0 (inv_out inv_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 \
+        ad=2.25e-12 ps=6u pd=6u m=1 region=sat
+    N0 (inv_out inv_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+ends inverter
+// End of subcircuit definition.
+
+// Library name: Project1
+// Cell name: XOR
+// View name: schematic
+subckt XOR A0 A1 X
+    P3 (net4 A1B X vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P2 (vdd! A0 net4 vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P1 (net2 A0B vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P0 (X A1 net2 vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N3 (0 A1B net8 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N2 (net8 A0B X 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N1 (X A0 net6 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N0 (net6 A1 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    I5 (A1 A1B) inverter
+    I4 (A0 A0B) inverter
+ends XOR
+// End of subcircuit definition.
+
+// Library name: Project2
+// Cell name: HalfAdder
+// View name: schematic
+subckt HalfAdder A B C S
+    I0 (A B net3) NAND
+    I1 (net3 C) inverter
+    I2 (A B S) XOR
+ends HalfAdder
+// End of subcircuit definition.
+
+// Library name: Project1
+// Cell name: NOR
+// View name: schematic
+subckt NOR A_in B_in Y_out
+    N1 (Y_out A_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    N0 (Y_out B_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+    P1 (Y_out B_in net1 vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+    P0 (net1 A_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+ends NOR
+// End of subcircuit definition.
+
+// Library name: Project2
+// Cell name: FullAdder
+// View name: schematic
+subckt FullAdder A B Cin Cout S
+    I1 (Cin net1 net3 S) HalfAdder
+    I0 (A B net2 net1) HalfAdder
+    I2 (net3 net2 net4) NOR
+    I4 (net4 Cout) inverter
+ends FullAdder
+// End of subcircuit definition.
+
+// Library name: Project2
+// Cell name: 8BitFullAdder
+// View name: schematic
+I7 (A1 B1 Ci1 Co1 S1) FullAdder
+I6 (A2 B2 Co1 Co2 S2) FullAdder
+I5 (A3 B3 Co2 Co3 S3) FullAdder
+I4 (A4 B4 Co3 Co4 S4) FullAdder
+I3 (A5 B5 Co4 Co5 S5) FullAdder
+I2 (A6 B6 Co5 Co6 S6) FullAdder
+I1 (A7 B7 Co6 Co7 S7) FullAdder
+I0 (A8 B8 Co7 Co8 S8) FullAdder
+
+// Spectre Source Statements
+vdd (vdd! 0) vsource dc=5
+gnd (gnd! 0) vsource dc=0
+vinA1 (A1 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 0 21.0n 0 21.05n 0 28.00n 0 28.05n 5 35.00n 5 35.05n 5 42.0n 5 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinB1 (B1 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 5 21.0n 5 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 0 42.0n 0 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinA2 (A2 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 0 21.0n 0 21.05n 0 28.00n 0 28.05n 5 35.00n 5 35.05n 5 42.0n 5 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinB2 (B2 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 5 21.0n 5 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 0 42.0n 0 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinA3 (A3 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 0 21.0n 0 21.05n 0 28.00n 0 28.05n 5 35.00n 5 35.05n 5 42.0n 5 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinB3 (B3 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 5 21.0n 5 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 0 42.0n 0 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinA4 (A4 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 0 21.0n 0 21.05n 0 28.00n 0 28.05n 5 35.00n 5 35.05n 5 42.0n 5 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinB4 (B4 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 5 21.0n 5 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 0 42.0n 0 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinA5 (A5 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 0 21.0n 0 21.05n 0 28.00n 0 28.05n 5 35.00n 5 35.05n 5 42.0n 5 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinB5 (B5 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 5 21.0n 5 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 0 42.0n 0 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinA6 (A6 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 0 21.0n 0 21.05n 0 28.00n 0 28.05n 5 35.00n 5 35.05n 5 42.0n 5 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinB6 (B6 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 5 21.0n 5 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 0 42.0n 0 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinA7 (A7 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 0 21.0n 0 21.05n 0 28.00n 0 28.05n 5 35.00n 5 35.05n 5 42.0n 5 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinB7 (B7 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 5 21.0n 5 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 0 42.0n 0 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinA8 (A8 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 0 21.0n 0 21.05n 0 28.00n 0 28.05n 5 35.00n 5 35.05n 5 42.0n 5 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinB8 (B8 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 0 14n 0 14.05n 5 21.0n 5 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 0 42.0n 0 42.05n 5 49.00n 5 49.05n 5 56.0n 5]
+
+vinCi1 (Ci1 0) vsource type=pwl wave=[0 0 0.05n 0 7.0n 0 7.05n 5 14n 5 14.05n 0 21.0n 0 21.05n 5 28.00n 5 28.05n 0 35.00n 0 35.05n 5 42.0n 5 42.05n 0 49.00n 0 49.05n 5 56.0n 5]
+
+// Spectre Analyses and Output Options Statements
+
+// Output Options
+simOptions options
+//+      reltol = 1.00000000E-03
+//+      vabstol = 1.00000000E-06
+//+      iabstol = 1.00000000E-12
+//+      temp = 27
+//+      save = allpub
+//+      currents = selected
+
+// Analyses
+// dc1 dc oppoint=logfile homotopy=all
+// tran1 tran stop=1 errpreset=moderate
+tran1 tran start=0 stop=56n step=0.1n errpreset=moderate
+
+
+
+// End of Netlist

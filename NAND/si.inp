@@ -1,0 +1,56 @@
+// Default Spectre Simulation run title card.
+
+
+// Generated for: spectre
+// Generated on: Oct  3 14:20:15 2023
+// Design library name: Project1
+// Design cell name: NAND
+// Design view name: schematic
+simulator lang=spectre
+global 0 vdd!
+global 0 vdd! gnd!
+
+include "/usr/local/cadence/IC618/tools.lnx86/dfII/local/ncsu-cdk-1.6.0.beta/models/spectre/standalone/ami06N.m"
+
+include "/usr/local/cadence/IC618/tools.lnx86/dfII/local/ncsu-cdk-1.6.0.beta/models/spectre/standalone/ami06P.m"
+
+
+
+// Library name: Project1
+// Cell name: NAND
+// View name: schematic
+P1 (Y_out A_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+P0 (Y_out B_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+N1 (net6 B_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+N0 (Y_out A_in net6 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+
+// Spectre Source Statements
+vdd (vdd! 0) vsource dc=5
+gnd (gnd! 0) vsource dc=0
+vinA (A_in 0) vsource type=pwl wave=[0 0 0.05n 0 3.0n 0 3.05n 0 6n 0 6.05n 5 9n 5 9.05n 5 12.00n 5 12.05n 0 15.00n 0]
+vinB (B_in 0) vsource type=pwl wave=[0 0 0.05n 0 3.0n 0 3.05n 5 6n 5 6.05n 0 9n 0 9.05n 5 12.00n 5 12.05n 0 15.00n 0]
+
+
+// Spectre Analyses and Output Options Statements
+
+// Output Options
+simOptions options
+//+      reltol = 1.00000000E-03
+//+      vabstol = 1.00000000E-06
+//+      iabstol = 1.00000000E-12
+//+      temp = 27
+//+      save = allpub
+//+      currents = selected
+
+// Analyses
+// dc1 dc oppoint=logfile homotopy=all
+// tran1 tran stop=1 errpreset=moderate
+tran1 tran start=0 stop=15n step=0.1n errpreset=moderate
+
+
+
+// End of Netlist
