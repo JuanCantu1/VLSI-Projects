@@ -1,0 +1,49 @@
+// Default Spectre Simulation run title card.
+
+
+// Generated for: spectre
+// Generated on: Sep 19 14:33:44 2023
+// Design library name: lab2
+// Design cell name: inverter
+// Design view name: schematic
+simulator lang=spectre
+global 0 vdd! gnd!
+
+//Address: copy from the Notepad//
+include "/usr/local/cadence/IC618/tools.lnx86/dfII/local/ncsu-cdk-1.6.0.beta/models/spectre/standalone/ami06N.m"
+
+include "/usr/local/cadence/IC618/tools.lnx86/dfII/local/ncsu-cdk-1.6.0.beta/models/spectre/standalone/ami06P.m"
+
+// Library name: lab2
+// Cell name: inverter
+// View name: schematic
+P0 (inv_out inv_in vdd! vdd!) ami06P w=1.5u l=600n as=2.25e-12 ad=2.25e-12 \
+        ps=6u pd=6u m=1 region=sat
+N0 (inv_out inv_in 0 0) ami06N w=1.5u l=600n as=2.25e-12 ad=2.25e-12 ps=6u \
+        pd=6u m=1 region=sat
+
+Cout (inv_out 0) capacitor c=0.01pF
+
+
+// Spectre Source Statements
+vdd (vdd! 0) vsource dc=5
+gnd (gnd! 0) vsource dc=0
+vin (inv_in 0) vsource type=pwl wave=[0 0 0.05n 0 3.0n 0 3.05n 5 6n 5 6.05n 0 9n 0 9.05n 5 12.00n 5 12.05n 0 15.00n 0] 
+// Spectre Analyses and Output Options Statements
+
+// Output Options
+simOptions options
+//+      reltol = 1.00000000E-03
+//+      vabstol = 1.00000000E-06
+//+      iabstol = 1.00000000E-12
+//+      temp = 27
+//+      save = allpub
+//+      currents = selected
+
+// Analyses
+// dc1 dc oppoint=logfile homotopy=all
+// tran1 tran stop=1 errpreset=moderate
+tran1 tran start=0 stop=5n step=0.1n errpreset=moderate
+
+
+// End of Netlist
