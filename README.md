@@ -113,3 +113,36 @@ Layout:
 
 Layout Vs Schematic:
 ![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/29fd4011-c40d-4ff0-a142-17579c859a7d)
+
+## 2 Input NOR Gate
+Schematic:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/0a2c70cf-3bf6-4595-a990-ac8b84b428ed)
+
+Testing Waveforms:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/26a25791-9aa1-4223-a73f-a968d79be816)
+
+Layout:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/bbe224cc-c30d-4fb2-bba1-83b960fd75ba)
+
+Layout Vs Schematic:
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/69292fe8-1f51-48c1-91a7-44d190be27f4)
+
+## NOT Gate
+Schematic:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/62bb596c-98d6-4c3d-ae98-274226efa9d7)
+
+Testing Waveforms:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/1a4016cd-9b94-4e92-aaa9-9f26dfaf2b43)
+
+Layout:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/7a134953-bdb9-43af-b682-221ab671f9e6)
+
+Layout Vs Schematic:
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/c9d31b67-285f-47f3-921f-a73c9910e0db)
+
