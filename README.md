@@ -28,6 +28,7 @@ Testing Waveforms:
 ![waveform2](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/efaa2670-e572-4df9-a467-45e0120509a0)
 
 Layout:
+
 ![layout](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/05ad9ac4-f253-49bb-951f-123a32247b62)
 
 Layout Vs Schematic:
