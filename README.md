@@ -56,6 +56,7 @@ Schematic:
 ![schematic](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/49626b65-593e-458b-9691-2b6d51dbcf71)
 
 Testing Waveforms:
+
 ![waveform](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/eb3bc8fc-9a58-448d-a314-5325fe50102c)
 
 Layout:
