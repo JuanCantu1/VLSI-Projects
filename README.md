@@ -21,6 +21,7 @@ Each circuit design has been carefully crafted to demonstrate understanding and 
 Schematic:
 ![schematic](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/14950a35-a7a5-4e04-a627-c30fc15f4de9)
 
+
 Testing Waveforms:
 ![waveform1](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/ed491b55-c104-4827-a2e1-75c8b6ece420)
 
