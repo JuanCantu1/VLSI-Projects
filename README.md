@@ -50,3 +50,19 @@ Layout:
 Layout Vs Schematic:
 ![LVS](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/fb9d4dd6-a962-4658-9327-2d80e72b1c1b)
 
+## Half Adder
+Schematic:
+
+![schematic](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/49626b65-593e-458b-9691-2b6d51dbcf71)
+
+Testing Waveforms:
+![waveform](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/eb3bc8fc-9a58-448d-a314-5325fe50102c)
+
+Layout:
+
+![layout](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/29a06f6c-b2ad-4d98-b897-70b23fa31080)
+
+Layout Vs Schematic:
+![LVS](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/027d5ebc-65a3-4d37-afa7-15fc00737fde)
+
+
