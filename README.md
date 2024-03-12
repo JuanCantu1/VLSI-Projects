@@ -98,3 +98,18 @@ Layout:
 Layout Vs Schematic:
 ![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/7003e66b-e35d-48cc-b3bc-fd4787c18fb7)
 
+## 2 Input NAND Gate
+Schematic:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/b8501954-8e3b-45c6-a1cd-534adee86e04)
+
+Testing Waveforms:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/a5a321e8-2a4d-4bc3-9350-1da872f04b92)
+
+Layout:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/cab04761-bcd6-4eec-bbe9-aac53a6db3fb)
+
+Layout Vs Schematic:
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/29fd4011-c40d-4ff0-a142-17579c859a7d)
