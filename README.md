@@ -18,4 +18,5 @@ Here is a list of the digital circuits designed and implemented:
 Each circuit design has been carefully crafted to demonstrate understanding and proficiency in VLSI design principles. 
 
 ## 8 Bit Full Adder
-https://github.com/JuanCantu1/VLSI-Projects/blob/main/8BitFullAdder/schematic.PNG?raw=true
+![schematic](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/14950a35-a7a5-4e04-a627-c30fc15f4de9)
+
