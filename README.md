@@ -81,3 +81,20 @@ Layout:
 
 Layout Vs Schematic:
 ![LVS](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/1a6718b0-95c4-449b-9f4d-a1e7ca8120e2)
+
+## 2 Input XOR Gate
+Schematic:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/97ae0018-30a3-4daf-940d-3b62ec586756)
+
+Testing Waveforms:
+
+![image](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/48315351-f142-4a4d-87da-56e6f373d6c3)
+
+Layout:
+
+![Layout](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/04d4b7b6-7043-439d-8d15-4d82507c29b5)
+
+Layout Vs Schematic:
+![LVS](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/1a6718b0-95c4-449b-9f4d-a1e7ca8120e2)
+
