@@ -34,3 +34,19 @@ Layout:
 Layout Vs Schematic:
 ![LVS](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/f6fcab74-4a32-4255-8c69-73852f8c4661)
 
+
+## Full Adder
+Schematic:
+
+![schematic](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/d445396e-56e0-48cf-87a1-5c72dbc6b4b5)
+
+Testing Waveforms:
+![waveform](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/df139670-03e7-4dd0-8f88-b99041aa6209)
+
+Layout:
+
+![layout](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/df4c376f-b22c-4540-ab6c-8beb4bc46b77)
+
+Layout Vs Schematic:
+![LVS](https://github.com/JuanCantu1/VLSI-Projects/assets/109363196/fb9d4dd6-a962-4658-9327-2d80e72b1c1b)
+
